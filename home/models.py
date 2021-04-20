@@ -11,6 +11,7 @@ from wagtail.admin.edit_handlers import FieldPanel
 
 
 class HomePage(Page):
+    template = 'index.html'
     body = RichTextField(blank=True)
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
