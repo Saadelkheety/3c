@@ -7,10 +7,13 @@ DEBUG = True
 SECRET_KEY = '=329@iqlan0e_%*#e9+2^s6gfx%$7d7s0)2dw$&ej0^133gi*-'
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 try:
     from .local import *
