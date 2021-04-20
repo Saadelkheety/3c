@@ -32,10 +32,18 @@ class BlogIndexPage(RoutablePageMixin, Page):
         context = super(BlogIndexPage, self).get_context(request, *args, **kwargs)
         context['posts'] = self.posts
         context['blog_page'] = self
+        context['categories'] = self.get_categories()
+        context['tags'] = self.get_tags()
         return context
 
     def get_posts(self):
         return PostPage.objects.descendant_of(self).live().order_by('-date')
+
+    def get_categories(self):
+        return BlogCategory.objects.all()
+
+    def get_tags(self):
+        return TaggitTag.objects.all()
 
     @route(r'^tag/(?P<tag>[-\w]+)/$')
     def post_by_tag(self, request, tag, *args, **kwargs):
