@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags custom_filters %}
+{% load wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags custom_filters wagtailuserbar %}
 {% block body %}
+{% wagtailuserbar 'bottom-left' %}
 
 <main id="main">
   <!-- ======= Breadcrumbs ======= -->

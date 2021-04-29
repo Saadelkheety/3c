@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'wagtail.documents',
     'wagtail.images',
     'wagtail.search',
+    'dashboard',
     'wagtail.admin',
     'wagtail.core',
 
     'widget_tweaks',
-    
+
     'modelcluster',
     'taggit',
 
