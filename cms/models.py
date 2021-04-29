@@ -223,7 +223,15 @@ class CoursesIndexPage(RoutablePageMixin, Page):
         return context
 
     def get_posts(self):
-        return PostPage.objects.descendant_of(self).live().order_by('-date')
+        return CoursePage.objects.descendant_of(self).live().order_by('title')
+
+    def get_courses_in_categories(self):
+        courses = {}
+        categories = self.get_categories()
+        for category in categories:
+            courses[category] = self.get_posts().filter(categories=category)
+        return courses
+
 
     def get_categories(self):
         return CoursesCategory.objects.all()

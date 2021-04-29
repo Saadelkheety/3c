@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags %}
+{% block body %}
+<main id="main" data-aos="fade-in">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <h2>{{ page.title }}</h2>
+      <p>{{ page.description }}</p>
+    </div>
+  </div><!-- End Breadcrumbs -->
+
+  <!-- ======= Courses Section ======= -->
+  <section id="courses" class="courses">
+    <div class="container" data-aos="fade-up">
+      {% for category, courses in  page.get_courses_in_categories.items %}
+      <div class="row" data-aos="zoom-in" data-aos-delay="100">
+        <div class="section-title">
+          <h2>Courses</h2>
+          <p>{{ category }}</p>
+        </div>
+        {% for course in courses %}
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="course-item">
+            {% if course.header_image %}
+            {% image course.header_image original as header_image %}
+            <a href="{% pageurl course %}" class="d-block">
+              <img src="{{ header_image.url }}" alt="" class="img-fluid"></img>
+            </a>
+            {% endif %}
+            <div class="course-content">
+
+              <h3><a href="{% pageurl course %}">{{ course.title }}</a></h3>
+              <p>{{ course.description }}</p>
+            </div>
+          </div>
+        </div> <!-- End Course Item-->
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+    </div>
+  </section><!-- End Courses Section -->
+
+</main><!-- End #main -->
+{% endblock %}

@@ -11,10 +11,10 @@
     </div><!-- End Breadcrumbs -->
   <!-- ======= Cource Details Section ======= -->
 <section id="course-details" class="course-details">
-      <div class="container" data-aos="fade-up">
+      <div class="container blog" data-aos="fade-up">
 
-        <div class="row">
-          <div class="col-lg-12">
+        <div class="row entry">
+          <div class="col-lg-12 entry-content">
             {% if page.header_image %}
             {% image page.header_image original as header_image %}
                 <img src="{{ header_image.url }}" alt="" class="img-fluid">
@@ -25,6 +25,26 @@
             {% include_block block %}
             {% endfor %}
             </p>
+          </div>
+          <div class="entry-footer">
+            {% with categories=page.categories.all %}
+            {% if categories %}
+              <i class="bi bi-folder"></i>
+              <ul class="cats">
+                {% for category in categories %}
+                <li><a href="{% routablepageurl courses_page 'post_by_category' category.slug %}">{{ category.name }}</a></li>
+                 {% endfor %}
+              </ul>
+            {% endif %}
+            {% endwith %}
+            {% if page.tags.all.count %}
+              <i class="bi bi-tags"></i>
+              <ul class="tags">
+                {% for tag in page.tags.all %}
+                  <li><a href="{% routablepageurl courses_page 'post_by_tag' tag.slug %}">{{ tag }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
         </div>
         <div class="mt-5 mb-5" id="disqus_thread" dir="ltr"></div>
