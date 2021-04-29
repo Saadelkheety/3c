@@ -4,7 +4,9 @@ from django.db import models
 from django import forms
 
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.contrib.table_block.blocks import TableBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel, FieldRowPanel
 from wagtail.images.blocks import ImageChooserBlock
@@ -29,7 +31,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
     ]
 
     def get_context(self, request, *args, **kwargs):
-        context = super(BlogIndexPage, self).get_context(request, *args, **kwargs)
+        context = super(BlogIndexPage, self).get_context(
+            request, *args, **kwargs)
         context['posts'] = self.posts
         context['blog_page'] = self
         context['categories'] = self.get_categories()
@@ -89,10 +92,16 @@ class BlogIndexPage(RoutablePageMixin, Page):
 #
 class PostPage(Page):
     template = 'post.html'
-    body = RichTextField(blank=True)
+    body = StreamField([
+        ('heading', blocks.CharBlock(form_classname="full title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('document', DocumentChooserBlock()),
+        ('table', TableBlock()),
+    ], blank=True)
     description = models.CharField(max_length=255, blank=True,)
     date = models.DateTimeField(
-        verbose_name="Post date", default=datetime.datetime.today)
+        verbose_name="start date", default=None, blank=True)
     header_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True,
@@ -109,12 +118,12 @@ class PostPage(Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-                FieldPanel('date'),
-                FieldPanel('tags'),
-                FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-            ], heading="Post information"),
+            FieldPanel('date'),
+            FieldPanel('tags'),
+            FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+        ], heading="Post information"),
         ImageChooserPanel('header_image'),
-        FieldPanel('body', classname="full"),
+        StreamFieldPanel('body'),
         FieldPanel('description', classname="full"),
         # InlinePanel('gallery_images', label="Gallery images"),
     ]
@@ -148,20 +157,20 @@ class BlogCategory(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
+        verbose_name = "Blog Category"
+        verbose_name_plural = "Blog Categories"
 
 
 class BlogIndexPageTag(TaggedItemBase):
     content_object = ParentalKey(PostPage, related_name='post_tags')
 
-#
+
 # @register_snippet
 # class Tag(TaggitTag):
 #     class Meta:
 #         proxy = True
-#
-#
+
+
 # class FormField(AbstractFormField):
 #     page = ParentalKey('FormPage', related_name='custom_form_fields')
 #
@@ -195,3 +204,113 @@ class BlogIndexPageTag(TaggedItemBase):
 #         ImageChooserPanel('image'),
 #         FieldPanel('caption'),
 #     ]
+
+
+class CoursesIndexPage(RoutablePageMixin, Page):
+    template = 'courses.html'
+    description = models.CharField(max_length=255, blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description', classname="full")
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(CoursesIndexPage, self).get_context(
+            request, *args, **kwargs)
+        context['courses'] = self.posts
+        context['courses_page'] = self
+        context['categories'] = self.get_categories()
+        return context
+
+    def get_posts(self):
+        return PostPage.objects.descendant_of(self).live().order_by('-date')
+
+    def get_categories(self):
+        return CoursesCategory.objects.all()
+
+    @route(r'^tag/(?P<tag>[-\w]+)/$')
+    def post_by_tag(self, request, tag, *args, **kwargs):
+        self.search_type = 'tag'
+        self.search_term = tag
+        self.posts = self.get_posts().filter(tags__slug=tag)
+        return Page.serve(self, request, *args, **kwargs)
+
+    @route(r'^category/(?P<category>[-\w]+)/$')
+    def post_by_category(self, request, category, *args, **kwargs):
+        self.search_type = 'category'
+        self.search_term = category
+        self.posts = self.get_posts().filter(categories__slug=category)
+        return Page.serve(self, request, *args, **kwargs)
+
+    @route(r'^$')
+    def post_list(self, request, *args, **kwargs):
+        self.posts = self.get_posts()
+        return Page.serve(self, request, *args, **kwargs)
+
+
+class CoursePage(Page):
+    template = 'course.html'
+    body = StreamField([
+        ('heading', blocks.CharBlock(form_classname="full title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('document', DocumentChooserBlock()),
+        ('table', TableBlock()),
+    ], blank=True)
+    description = models.CharField(max_length=255, blank=True,)
+    # regular_price =
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+    categories = ParentalManyToManyField('CoursesCategory', blank=True)
+    tags = ClusterTaggableManager(through='CoursesIndexPageTag', blank=True)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('description'),
+        index.SearchField('body'),
+    ]
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel([
+            FieldPanel('tags'),
+            FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+        ], heading="Post information"),
+        ImageChooserPanel('header_image'),
+        StreamFieldPanel('body'),
+        FieldPanel('description', classname="full"),
+        # InlinePanel('gallery_images', label="Gallery images"),
+    ]
+
+    @property
+    def courses_page(self):
+        return self.get_parent().specific
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(CoursePage, self).get_context(request, *args, **kwargs)
+        context['courses_page'] = self.courses_page
+        context['course'] = self
+        return context
+
+
+@register_snippet
+class CoursesCategory(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, max_length=80)
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('slug'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Courses Category"
+        verbose_name_plural = "Courses Categories"
+
+class CoursesIndexPageTag(TaggedItemBase):
+    content_object = ParentalKey(CoursePage, related_name='course_tags')

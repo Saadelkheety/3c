@@ -41,7 +41,9 @@
           </h2>
 
           <div class="entry-content">
-            {{ page.body|richtext }}
+            {% for block in page.body %}
+            {% include_block block %}
+            {% endfor %}
           </div>
 
           <div class="entry-footer">
