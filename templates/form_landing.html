@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags widget_tweaks%}
+{% block body %}
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+      <div class="row" style="min-height:60vh;">
+        <div class="col-12 align-self-end">
+          <h2>Thank you</h2>
+        </div>
+        <div class="col-12">
+          {{ page.thank_you_text|richtext }}
+        </div>
+      </div>
+    </div>
+  </div><!-- End Breadcrumbs -->
+
+</main><!-- End #main -->
+{% endblock %}

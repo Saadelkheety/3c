@@ -8,13 +8,14 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.core import blocks
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel, FieldRowPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel, FieldRowPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
+
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.tags import ClusterTaggableManager
@@ -172,27 +173,50 @@ class BlogIndexPageTag(TaggedItemBase):
 #         proxy = True
 
 
-# class FormField(AbstractFormField):
-#     page = ParentalKey('FormPage', related_name='custom_form_fields')
-#
-#
-# class FormPage(AbstractEmailForm):
-#     thank_you_text = RichTextField(blank=True)
-#
-#     content_panels = AbstractEmailForm.content_panels + [
-#         InlinePanel('custom_form_fields', label="Form fields"),
-#         FieldPanel('thank_you_text', classname="full"),
-#         MultiFieldPanel([
-#             FieldRowPanel([
-#                 FieldPanel('from_address', classname="col6"),
-#                 FieldPanel('to_address', classname="col6"),
-#             ]),
-#             FieldPanel('subject'),
-#         ], "Email Notification Config"),
-#     ]
-#
-#     def get_form_fields(self):
-#         return self.custom_form_fields.all()
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+
+
+class FormPage(AbstractEmailForm):
+    template = 'form.html'
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+
+    thank_you_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    def render_landing_page(self, request, form_submission=None, *args, **kwargs):
+        if self.thank_you_page:
+            url = self.thank_you_page.url
+            # if a form_submission instance is available, append the id to URL
+            # when previewing landing page, there will not be a form_submission instance
+            if form_submission:
+              url += '?id=%s' % form_submission.id
+            return redirect(url, permanent=False)
+        # if no thank_you_page is set, render default landing page
+        return super().render_landing_page(request, form_submission, *args, **kwargs)
+
+    content_panels = AbstractEmailForm.content_panels + [
+        FieldPanel('intro', classname="full"),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text', classname="full"),
+        PageChooserPanel('thank_you_page'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email Notification Config"),
+    ]
+
+    def get_form_fields(self):
+        return self.form_fields.all()
 
 # class PostPagetGalleryImage(Orderable):
 #     page = ParentalKey(PostPage, on_delete=models.CASCADE, related_name='gallery_images')
