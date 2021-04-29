@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailroutablepage_tags wagtailimages_tags custom_filters %}
+{% block body %}
+
+<main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+      <h2>{{ page.title }}</h2>
+      <p>{{ page.description }}</p>
+    </div>
+  </div><!-- End Breadcrumbs -->
+
+  <!-- ======= Pricing Section ======= -->
+  <section id="pricing" class="pricing">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center align-items-center">
+        {% for membership in memberships %}
+
+        <div class="col-lg-4 col-md-6">
+          <div class="box">
+            {%if membership.discount > 0 %}
+            <span class="advanced">Discount</span>
+            <h3>{{ membership.title }}</h3>
+            <h4 class="inline-block"><sup>egp</sup>{{ membership.price|sub:membership.discount}}<br><small>instead of <del>{{ membership.price }}</del></small></h4>
+            {% else %}
+            <h3>{{ membership.title }}</h3>
+            <h4><sup>egp</sup>{{ membership.price }}</h4>
+            {% endif %}
+            <ul>
+              <li><h5>{{ membership.hours }} Hours<h5></li>
+              <li class="text-center">
+                <h5>{{ membership.description }}</h5>
+              </li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="/register" class="btn-buy">Register Now</a>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+    </div>
+  </section><!-- End Pricing Section -->
+
+</main><!-- End #main -->
+
+{% endblock %}

@@ -1567,8 +1567,12 @@ section {
 /*--------------------------------------------------------------
 # Pricing
 --------------------------------------------------------------*/
+small {
+    font-size: .5em;
+    color: red;
+  }
 .pricing .box {
-  padding: 20px;
+  padding: 30px;
   background: #fff;
   text-align: center;
   border: 1px solid #eef0ef;

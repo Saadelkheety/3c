@@ -21,6 +21,7 @@ from modelcluster.tags import ClusterTaggableManager
 
 from taggit.models import TaggedItemBase, Tag as TaggitTag
 
+from django.core.validators import MinValueValidator
 
 class BlogIndexPage(RoutablePageMixin, Page):
     template = 'blog.html'
@@ -322,3 +323,53 @@ class CoursesCategory(models.Model):
 
 class CoursesIndexPageTag(TaggedItemBase):
     content_object = ParentalKey(CoursePage, related_name='course_tags')
+
+
+
+
+class MembershipsIndexPage(RoutablePageMixin, Page):
+    template = 'memberships.html'
+    description = models.CharField(max_length=255, blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description', classname="full")
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(MembershipsIndexPage, self).get_context(
+            request, *args, **kwargs)
+        context['memberships'] = self.get_memberships()
+        context['memberships_page'] = self
+        return context
+
+    def get_memberships(self):
+        return MembershipPage.objects.descendant_of(self).live().order_by('title')
+
+
+class MembershipPage(Page):
+    description = models.CharField(max_length=255, blank=True,)
+    price = models.FloatField(default=0, validators=[MinValueValidator(0.0)])
+    discount = models.FloatField(default=0, validators=[MinValueValidator(0.0)])
+    hours = models.FloatField(default=0, validators=[MinValueValidator(0.0)])
+    # regular_price =
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    search_fields = Page.search_fields + [
+        index.SearchField('description')
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description', classname="full"),
+        ImageChooserPanel('header_image'),
+        MultiFieldPanel([
+            FieldPanel('price'),
+            FieldPanel('discount'),
+            FieldPanel('hours'),
+        ], heading="Membersihip information"),
+
+    ]
