@@ -22,7 +22,7 @@
         <div class="col-lg-4 col-md-6">
           <div class="box">
             {%if membership.discount > 0 %}
-            <span class="advanced">Discount</span>
+            <span class="advanced">Offer</span>
             <h3>{{ membership.title }}</h3>
             <h4 class="inline-block"><sup>egp</sup>{{ membership.price|sub:membership.discount}}<br><small>instead of <del>{{ membership.price }}</del></small></h4>
             {% else %}
