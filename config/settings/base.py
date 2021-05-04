@@ -17,11 +17,11 @@ import environ
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-
 # reading .env file
 environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
@@ -102,7 +102,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'threec',
+        'USER': 'cschool',
+        'PASSWORD': '564312',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
 }
 
 
