@@ -4,3 +4,5 @@ venv
 resources
 media/
 dev.py
+.env
+production.py
