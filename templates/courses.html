@@ -15,13 +15,11 @@
   <!-- ======= Courses Section ======= -->
   <section id="courses" class="courses">
     <div class="container" data-aos="fade-up">
-      {% for category, courses in  page.get_courses_in_categories.items %}
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
         <div class="section-title">
           <h2>Courses</h2>
-          <p>{{ category }}</p>
         </div>
-        {% for course in courses %}
+        {% for course in page.get_posts %}
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="course-item">
             {% if course.header_image %}
@@ -39,7 +37,6 @@
         </div> <!-- End Course Item-->
         {% endfor %}
       </div>
-      {% endfor %}
 
     </div>
   </section><!-- End Courses Section -->

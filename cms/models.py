@@ -244,7 +244,7 @@ class CoursesIndexPage(RoutablePageMixin, Page):
             request, *args, **kwargs)
         context['courses'] = self.posts
         context['courses_page'] = self
-        context['categories'] = self.get_categories()
+        # context['categories'] = self.get_categories()
         return context
 
     def get_posts(self):
