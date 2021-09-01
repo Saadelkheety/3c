@@ -1,114 +1,139 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags wagtailuserbar %}
+{% block extra_css %}
+{% endblock %}
 {% block body %}
 {% wagtailuserbar 'bottom-left' %}
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-content-center align-items-center">
-    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Learning Today,<br>Leading Tomorrow</h1>
-      <h2>Give your child chance to explore, create and share this creativity through his journey.</h2>
-      <a href="/courses" class="btn-get-started">Get Started</a>
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative hero-container" data-aos="zoom-in" data-aos-delay="100">
+    <h1>Learning Today,<br>Leading Tomorrow</h1>
+    <p class="hero">There are overpowered and daily changes in the world, <br>
+      while the traditional education does not qualify your child to keep up and face it.</p>
+    <a href="/courses" class="btn-get-started">Get Started</a>
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <section id="why-us" class="why-us">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-12 align-items-center">
+          <div class="content">
+            <h3>3C Strategy:</h3>
+            <p style="font-size:x-large">
+              At 3C, we build the mental power of the children and develop their skills
+              to keep up with the rapid world through acquiring programming,
+              entrepreneurship and self-employment skills.</p>
+          </div>
+        </div>
+        <!-- brands -->
+      </div>
     </div>
-  </section><!-- End Hero -->
+  </section>
 
-  <main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+          <img src="/static/img/about.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+          <h3>Who are we?</h3>
+          <p class="fst-italic">
+            3C, Creative Children Community
+          </p>
+          <ul>
+            <li><i class="bi bi-check-circle"></i> 3C is a programming school started in Egypt since 2015.</li>
+            <li><i class="bi bi-check-circle"></i> 3C is the best place to take your child to a deep and wonderful programming journey. Give your child chance to explore, create and share this creativity through his journey.</li>
+            <li><i class="bi bi-check-circle"></i> Without computer programming, daily dealings may be a magic!</li>
+            <li><i class="bi bi-check-circle"></i> Many questions, in your child’s brain, start with how, why and what?</li>
+            <li><i class="bi bi-check-circle"></i> At 3C, your child knows that is all about coding that makes magic.</li>
+            <li><i class="bi bi-check-circle"></i> Your child start learning programming using international tools like Scratch and MIT App Inventor and also using international languages like python, Java, C# and more.</li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="/static/img/about.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Who are we?</h3>
-            <p class="fst-italic">
-              3C, Creative Children Community
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> 3C is a programming school started in Egypt since 2015.</li>
-              <li><i class="bi bi-check-circle"></i> 3C is the best place to take your child to a deep and wonderful programming journey. Give your child chance to explore, create and share this creativity through his journey.</li>
-              <li><i class="bi bi-check-circle"></i> Without computer programming, daily dealings may be a magic!</li>
-              <li><i class="bi bi-check-circle"></i> Many questions, in your child’s brain, start with how, why and what?</li>
-              <li><i class="bi bi-check-circle"></i> At 3C, your child knows that is all about coding that makes magic.</li>
-              <li><i class="bi bi-check-circle"></i> Your child start learning programming using international tools like Scratch and MIT App Inventor and also using international languages like python, Java, C# and more.</li>
-            </ul>
-          </div>
+    </div>
+  </section><!-- End About Section -->
+
+  <!-- ======= Counts Section ======= -->
+  <section id="counts" class="counts section-bg">
+    <div class="container">
+
+      <div class="row counters">
+
+        <div class="col-lg-4 col-6 text-center">
+          <span data-purecounter-start="0" data-purecounter-end="6000" data-purecounter-duration="1" class="purecounter"></span><span>+</span>
+          <p>Students</p>
+        </div>
+
+        <div class="col-lg-4 col-6 text-center">
+          <span data-purecounter-start="0" data-purecounter-end="400" data-purecounter-duration="1" class="purecounter"></span><span>+</span>
+          <p>Training hours</p>
+        </div>
+
+        <div class="col-lg-4 col-6 text-center">
+          <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
+          <p>Experience years</p>
         </div>
 
       </div>
-    </section><!-- End About Section -->
 
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
-      <div class="container">
+    </div>
+  </section><!-- End Counts Section -->
 
-        <div class="row counters">
+  <!-- ======= Why Us Section ======= -->
+  <section id="why-us" class="why-us">
+    <div class="container" data-aos="fade-up">
 
-          <div class="col-lg-4 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="6000" data-purecounter-duration="1" class="purecounter"></span><span>+</span>
-            <p>Students</p>
+      <div class="row">
+        <div class="col-12 align-items-center">
+          <div class="content">
+            <h3>Why Choose 3C -Creative Children Community-?</h3>
           </div>
-
-          <div class="col-lg-4 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="400" data-purecounter-duration="1" class="purecounter"></span><span>+</span>
-            <p>Training hours</p>
-          </div>
-
-          <div class="col-lg-4 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Experience years</p>
-          </div>
-
         </div>
-
       </div>
-    </section><!-- End Counts Section -->
 
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
-      <div class="container" data-aos="fade-up">
+      <div class="row d-flex d-flex justify-content-center icon-boxes align-items-center" data-aos="zoom-in" data-aos-delay="100"">
+                  <div class=" col-md-4 d-flex align-items-stretch">
+        <div class="icon-box mt-4">
+          <h4>Experts</h4>
+          <p>We are Experienced and have been in education and training for nearly 6 years since 2015.</p>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex align-items-stretch">
+        <div class="icon-box mt-4">
+          <h4>Simplicity and Fun</h4>
+          <p>Expert Engineers are simplifying the programming concepts to children and explaining using the steps of the scientific method.</p>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex align-items-stretch">
+        <div class="icon-box mt-4">
+          <h4>Quality</h4>
+          <p>We are using effective content, evaluation and follow-up strategies and providing continuous technical care to all students.</p>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex align-items-stretch">
+        <div class="icon-box mt-4">
+          <h4>Multiple and varied choices</h4>
+          <p>Programming is a huge field and not restricted. There is no really an upper bound for programming. After learning the programming basics, your child will have the chance to choose his path that he interests and prefers.</p>
+        </div>
+      </div>
+    </div>
+    </div><!-- End .content-->
 
-        <div class="row">
-          <div class="col-12 align-items-center">
-            <div class="content">
-              <h3>Why Choose 3C -Creative Children Community-?</h3>
-            </div>
-          </div>
-          </div>
+  </section><!-- End Why Us Section -->
 
-          <div class="row d-flex d-flex justify-content-center icon-boxes align-items-center" data-aos="zoom-in" data-aos-delay="100"">
-                  <div class="col-md-4 d-flex align-items-stretch">
-                    <div class="icon-box mt-4">
-                      <h4>Experts</h4>
-                      <p>We are Experienced and have been in education and training for nearly 6 years since 2015.</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 d-flex align-items-stretch">
-                    <div class="icon-box mt-4">
-                      <h4>Simplicity and Fun</h4>
-                      <p>Expert Engineers are simplifying the programming concepts to children and explaining using the steps of the scientific method.</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 d-flex align-items-stretch">
-                    <div class="icon-box mt-4">
-                      <h4>Quality</h4>
-                      <p>We are using effective content, evaluation and follow-up strategies and providing continuous technical care to all students.</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 d-flex align-items-stretch">
-                    <div class="icon-box mt-4">
-                      <h4>Multiple and varied choices</h4>
-                      <p>Programming is a huge field and not restricted. There is no really an upper bound for programming. After learning the programming basics, your child will have the chance to choose his path that he interests and prefers.</p>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End .content-->
+</main><!-- End #main -->
+<script src="/static/js/typed.js/typed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/js/brands.js"></script>
 
-    </section><!-- End Why Us Section -->
-
-  </main><!-- End #main -->
 
 {% endblock %}
