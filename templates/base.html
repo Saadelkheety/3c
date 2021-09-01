@@ -27,6 +27,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="/static/owlcarousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="/static/owlcarousel/owl.theme.default.min.css">
   <link href="/static/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="/static/vendor/aos/aos.css" rel="stylesheet">
   <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,21 +41,30 @@
   <link href="/static/css/style.css" rel="stylesheet">
   <!-- Facebook Pixel Code -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-   fbq('init', '1101925710315012');
-  fbq('track', 'PageView');
+    ! function(f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function() {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1101925710315012');
+    fbq('track', 'PageView');
   </script>
   <noscript>
-   <img height="1" width="1"
-  src="https://www.facebook.com/tr?id=1101925710315012&ev=PageView
-  &noscript=1"/>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=1101925710315012&ev=PageView
+  &noscript=1" />
   </noscript>
   <!-- End Facebook Pixel Code -->
 
@@ -68,8 +79,8 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href="/">
-        <img src="/static/img/3c.png" alt="">
-      </a></h1>
+          <img src="/static/img/3c.png" alt="">
+        </a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="/static/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -136,6 +147,13 @@
   <script src="/static/vendor/php-email-form/validate.js"></script>
   <script src="/static/vendor/purecounter/purecounter.js"></script>
   <script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/static/owlcarousel/owl.carousel.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".owl-carousel").owlCarousel();
+    });
+  </script>
 
   <!-- Template Main JS File -->
   <script src="/static/js/main.js"></script>
