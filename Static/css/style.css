@@ -2035,9 +2035,16 @@ small {
     height: 100%
 }
 
-.brands_item img {
+.logos-carousel .brands_item img {
     max-width: 100%;
     height: 50px;
+    width: fit-content !important;
+    align-self: center;
+}
+
+.feeds-carousel .brands_item img {
+    max-width: 100%;
+    height: 50vh;
     width: fit-content !important;
     align-self: center;
 }
@@ -2076,4 +2083,12 @@ small {
 
  .owl-item {
   padding: 0 10px;
+}
+
+.text-wrap {
+  white-space: normal;
+}
+
+#levels .badge {
+  background: #00aeef;
 }

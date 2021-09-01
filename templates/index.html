@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags wagtailuserbar %}
 {% block extra_css %}
+<link href="/static/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
 {% wagtailuserbar 'bottom-left' %}
@@ -29,7 +30,7 @@
               entrepreneurship and self-employment skills.</p>
             <div class="col-12 align-items-center">
               <div class="brands_slider_container">
-                <div class="owl-carousel owl-theme brands_slider">
+                <div class="owl-carousel logos-carousel owl-theme brands_slider">
                   <div class="brands_item d-flex flex-column justify-content-center"> <img src="https://www.python.org/static/img/python-logo.png" class="img-fluid" alt="python"> </div>
                   <div class="brands_item d-flex flex-column justify-content-center"> <img src="https://cdn.arduino.cc/header-footer/prod/assets/headerLogo-arduino.svg" class="img-fluid" alt="Arduino"> </div>
                   <div class="brands_item d-flex flex-column justify-content-center"> <img src="https://scratch.mit.edu/images/logo_sm.png" class="img-fluid" alt="scratch"> </div>
@@ -96,7 +97,56 @@
     </div>
   </section>
 
+  <section>
+    <div id="levels" class="container position-relative hero-container mb-5" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-12 mt-4">
+          <h1 class="text-center">Learning Journy</h1>
+        </div>
+        <div class="col-12">
+          <h1><span class="badge text-center d-block">Standard level</span></h1>
+        </div>
+        <div class="row">
+          <div class="col-3 text-center">
+            <p class="btn">
+              <span class="oi oi-arrow-thick-bottom"></span>
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <p class="btn">
+              <span class="oi oi-arrow-thick-bottom"></span>
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <p class="btn">
+              <span class="oi oi-arrow-thick-bottom"></span>
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <p class="btn">
+              <span class="oi oi-arrow-thick-bottom"></span>
+            </p>
+          </div>
+        </div>
+        <!-- $$$$$$$$$$$$44 -->
 
+        <div class="row">
+          <div class="col-3 text-center">
+            <h4><span class="badge text-center d-block">Web</span></h4>
+          </div>
+          <div class="col-3 text-center">
+            <h4><span class="badge text-center d-block">Mobile</span></h4>
+          </div>
+          <div class="col-3 text-center">
+            <h4><span class="badge text-center d-block">AI</span></h4>
+          </div>
+          <div class="col-3 text-center">
+            <h4><span class="badge text-center d-block">Games</span></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- ======= Counts Section ======= -->
   <section id="counts" class="counts section-bg">
     <div class="container">
@@ -163,6 +213,22 @@
     </div>
     </div><!-- End .content-->
 
+    <div class="col-12 align-items-center">
+      <div class="brands_slider_container">
+        <div class="owl-carousel feeds-carousel owl-theme brands_slider">
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/1.jpeg" class="img-fluid" alt="feeds"> </div>
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/2.jpeg" class="img-fluid" alt="feeds"> </div>
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/3.jpeg" class="img-fluid" alt="feeds"> </div>
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/4.jpeg" class="img-fluid" alt="feeds"> </div>
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/5.jpeg" class="img-fluid" alt="feeds"> </div>
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/6.jpeg" class="img-fluid" alt="feeds"> </div>
+          <div class="brands_item d-flex flex-column justify-content-center"> <img src="/static/img/feeds/7.jpeg" class="img-fluid" alt="feeds"> </div>
+        </div>
+        <div class="col-12 text-center">
+          <a href="/register" class="btn-get-started" style="margin: 15px 0 10px 0;">Apply now</a>
+        </div>
+      </div>
+    </div>
   </section><!-- End Why Us Section -->
 
 </main><!-- End #main -->

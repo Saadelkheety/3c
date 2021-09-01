@@ -151,11 +151,20 @@
   <script src="/static/owlcarousel/owl.carousel.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      $(".owl-carousel").owlCarousel({autoplay:true,
+      $(".logos-carousel").owlCarousel({autoplay:true,
                                       loop:true,
                                       center:true,
-                                      dots:false,
-                                      animateOut:true,});
+                                      dots:false,});
+    });
+
+    $(document).ready(function() {
+      $(".feeds-carousel").owlCarousel({
+                                      items: 1,
+                                      autoplay:true,
+                                      loop:true,
+                                      center:true,
+                                      dots:true,
+                                      margin:20,});
     });
   </script>
 
