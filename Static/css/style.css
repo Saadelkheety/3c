@@ -438,7 +438,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 24px;
 }
 
-#hero .btn-get-started {
+.btn-get-started {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 15px;
@@ -452,9 +452,15 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-#hero .btn-get-started:hover {
+ #hero .btn-get-started:hover {
   background: #00aeef;
   border: 2px solid #00aeef;
+}
+
+.brands_slider_container .btn-get-started:hover {
+  background: #fff;
+  border: 2px solid #00aeef;
+  color: #00aeef;
 }
 
 @media (min-width: 1024px) {
@@ -481,7 +487,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 60px 0 10px 0;
   overflow: hidden;
 }
 
@@ -625,7 +631,7 @@ section {
 # Why Us
 --------------------------------------------------------------*/
 .why-us .content {
-  padding: 30px;
+  padding: 30px 20px 10px 20px;
   background: #00aeef;
   border-radius: 4px;
   color: #fff;
@@ -2004,4 +2010,70 @@ small {
   background: #3ac162;
   color: #fff;
   text-decoration: none;
+}
+
+
+.brands {
+    width: 100%;
+    padding-top: 90px;
+    padding-bottom: 90px
+}
+
+.brands_slider_container {
+    border: solid 1px #00aeef;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #00aeef
+}
+
+.brands_slider {
+    height: 100%;
+    margin-top: 20px
+}
+
+.brands_item {
+    height: 100%
+}
+
+.brands_item img {
+    max-width: 100%;
+    height: 50px;
+    width: fit-content !important;
+    align-self: center;
+}
+
+.brands_item svg {
+    max-width: 100%;
+    height: 50px;
+    width: fit-content !important;
+    align-self: center;
+}
+
+.brands_nav {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 5px;
+    cursor: pointer
+}
+
+.brands_nav i {
+    color: #e5e5e5;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease
+}
+
+.brands_nav:hover i {
+    color: #676767
+}
+
+ .owl-item {
+  padding: 0 10px;
 }
