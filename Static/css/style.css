@@ -2102,10 +2102,23 @@ small {
   padding: 0 10px;
 }
 
+
 .text-wrap {
   white-space: normal;
 }
 
 #levels .badge {
   background: #00aeef;
+}
+
+.owl-stage {
+  display: flex;
+  align-items: center;
+}
+
+.card  {
+  background-color: #00aeef;
+  color: #fff;
+  height: 100%;
+  font-size: larger;
 }
