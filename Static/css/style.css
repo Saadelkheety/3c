@@ -2122,3 +2122,10 @@ small {
   height: 100%;
   font-size: larger;
 }
+
+iframe {
+    border: 0;
+    width: 100%;
+    min-height: 50vh;
+    height: auto;
+  }
