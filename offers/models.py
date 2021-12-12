@@ -7,6 +7,7 @@ class Kid(models.Model):
     phone_number = models.CharField(max_length=12)
     school = models.CharField(max_length=256, blank=True)
     age = models.CharField(default='9-12', max_length=100, blank=True)
+    payment = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
         return self.name

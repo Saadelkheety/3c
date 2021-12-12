@@ -9,6 +9,7 @@ class KidSerializer(serializers.Serializer):
     phone_number = serializers.CharField(max_length=12)
     school = serializers.CharField(max_length=256, required=False)
     age = serializers.CharField(default='9-12', max_length=100, required=False)
+    payment = serializers.CharField(max_length=256, required=False)
 
     def create(self, validated_data):
         """
@@ -25,5 +26,7 @@ class KidSerializer(serializers.Serializer):
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
         instance.school = validated_data.get('school', instance.school)
         instance.age = validated_data.get('age', instance.age)
+        instance.payment = validated_data.get('payment', instance.payment)
+
         instance.save()
         return instance
