@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'home',
     'search',
     'cms',
+    'offers.apps.OffersConfig',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'wagtail.api.v2',
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
