@@ -3,3 +3,4 @@ wagtail>=2.12,<2.13
 django-widget-tweaks==1.4.8
 django-environ==0.4.5
 djangorestframework
+django-cors-headers==3.10.1

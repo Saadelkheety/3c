@@ -31,6 +31,7 @@ environ.Env.read_env()
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'home',
     'search',
     'cms',
@@ -67,6 +68,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
