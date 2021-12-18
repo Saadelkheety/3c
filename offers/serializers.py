@@ -6,7 +6,7 @@ class KidSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=512)
     email = serializers.EmailField(required=False)
-    phone_number = serializers.CharField(max_length=12)
+    phone_number = serializers.CharField(max_length=16)
     school = serializers.CharField(max_length=256, required=False)
     age = serializers.CharField(default='9-12', max_length=100, required=False)
     payment = serializers.CharField(max_length=256, required=False)
