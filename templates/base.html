@@ -5,6 +5,18 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215806500-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-215806500-1');
+  </script>
   <meta name="facebook-domain-verification" content="lt3xdc1l3vyngx7qn7w1ttn73n2o44" />
   <title>
     {% block title %}
@@ -148,20 +160,23 @@
   <script src="/static/owlcarousel/owl.carousel.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      $(".logos-carousel").owlCarousel({autoplay:true,
-                                      loop:true,
-                                      center:true,
-                                      dots:false,});
+      $(".logos-carousel").owlCarousel({
+        autoplay: true,
+        loop: true,
+        center: true,
+        dots: false,
+      });
     });
 
     $(document).ready(function() {
       $(".feeds-carousel").owlCarousel({
-                                      items: 1,
-                                      autoplay:true,
-                                      loop:true,
-                                      center:true,
-                                      dots:true,
-                                      margin:20,});
+        items: 1,
+        autoplay: true,
+        loop: true,
+        center: true,
+        dots: true,
+        margin: 20,
+      });
     });
   </script>
 
