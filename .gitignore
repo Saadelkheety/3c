@@ -3,6 +3,5 @@ venv
 *.sqlite3
 resources
 media/
-dev.py
 .env
-production.py
+static_collected
