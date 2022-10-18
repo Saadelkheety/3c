@@ -13,7 +13,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
 
@@ -100,7 +99,7 @@ class PostPage(Page):
         ('image', ImageChooserBlock()),
         ('document', DocumentChooserBlock()),
         ('table', TableBlock()),
-    ], blank=True)
+    ], blank=True, use_json_field=True)
     description = models.CharField(max_length=255, blank=True,)
     date = models.DateTimeField(
         verbose_name="start date", default=None, blank=True)
@@ -124,8 +123,8 @@ class PostPage(Page):
             FieldPanel('tags'),
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Post information"),
-        ImageChooserPanel('header_image'),
-        StreamFieldPanel('body'),
+        FieldPanel('header_image'),
+        FieldPanel('body'),
         FieldPanel('description', classname="full"),
         # InlinePanel('gallery_images', label="Gallery images"),
     ]
@@ -226,7 +225,7 @@ class FormPage(AbstractEmailForm):
 #     caption = models.CharField(blank=True, max_length=250)
 #
 #     panels = [
-#         ImageChooserPanel('image'),
+#         FieldPanel('image'),
 #         FieldPanel('caption'),
 #     ]
 
@@ -289,7 +288,7 @@ class CoursePage(Page):
         ('image', ImageChooserBlock()),
         ('document', DocumentChooserBlock()),
         ('table', TableBlock()),
-    ], blank=True)
+    ], blank=True, use_json_field=True)
     description = models.CharField(max_length=255, blank=True,)
     # regular_price =
     header_image = models.ForeignKey(
@@ -311,8 +310,8 @@ class CoursePage(Page):
             FieldPanel('tags'),
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Post information"),
-        ImageChooserPanel('header_image'),
-        StreamFieldPanel('body'),
+        FieldPanel('header_image'),
+        FieldPanel('body'),
         FieldPanel('description', classname="full"),
         # InlinePanel('gallery_images', label="Gallery images"),
     ]
@@ -389,7 +388,7 @@ class MembershipPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('description', classname="full"),
-        ImageChooserPanel('header_image'),
+        FieldPanel('header_image'),
         MultiFieldPanel([
             FieldPanel('price'),
             FieldPanel('discount'),
