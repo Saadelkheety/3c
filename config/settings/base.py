@@ -168,10 +168,10 @@ STATICFILES_FINDERS = [
 # See https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'Static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 STATIC_URL = '/static/'
