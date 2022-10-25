@@ -6,15 +6,20 @@ from wagtail.core.models import Page
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel, FieldRowPanel
+from wagtail.contrib.forms.panels import FormSubmissionsPanel
 
 
 class FormField(AbstractFormField):
     page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='form_fields')
+    def get_field_type(self):
+        return self.field_type
 
 class HomePage(AbstractEmailForm):
     template = 'index.html'
     body = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
+    form_title = models.CharField(max_length=255, blank=True)
+    submit_button = models.CharField(max_length=255, default='Submit') 
 
     thank_you_page = models.ForeignKey(
         'wagtailcore.Page',
@@ -37,7 +42,10 @@ class HomePage(AbstractEmailForm):
 
 
     content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
         FieldPanel('body', classname="full"),
+        FieldPanel('form_title', classname="title"),
+        FieldPanel('submit_button', classname="submit_button"),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text', classname="full"),
         PageChooserPanel('thank_you_page'),
