@@ -2,27 +2,6 @@
 {% load wagtailcore_tags wagtailuserbar wagtailroutablepage_tags wagtailimages_tags static widget_tweaks %}
 {% block body %}
 {% wagtailuserbar 'bottom-left' %}
-        <div class="popup-mobile-menu">
-            <div class="inner">
-                <div class="header-top">
-                    <div class="logo">
-                        <a href="index.html"> <img src="{% static 'images/logo/logo.png' %}" alt="Site Logo"> </a>
-                    </div>
-                    <div class="close-menu">
-                        <button class="close-button"> <i class="ri-close-line"></i> </button>
-                    </div>
-                </div>
-                <ul class="mainmenu">
-                    <li><a href="#intro">Intro</a></li>
-                    <li><a href="#About">About Us</a></li>
-                    <li><a href="#Why">Why Us</a></li>
-                    <li><a href="#Pricing">Pricing</a></li>
-                    <li><a href="#Parents">Parents</a></li>
-                    <li><a href="#Features">Features</a></li>
-                    <li><a href="#Testimonials">Testimonials</a></li>
-                </ul>
-            </div>
-        </div>
         <!-- Start Sldier Area  -->
         <div class="slider-area eduvibe-landing-banner bg-image" id="intro">
             <div class="d-flex align-items-center height-800">
@@ -47,17 +26,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 offset-lg-2">
-                            <div class="banner-image">
+                        <div class="col-lg-6">
+                            <div class="banner-image" style="margin: auto;">
                                 <div class="banner-main-image"> <img width="img" class="landing-banner-hero-img" src="{% static 'images/bg3cs.png' %}" alt="Coding For Kids" /> </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="shape-wrapper">
-                        <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
-                            <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-11-08.png' %}" alt="Shape Thumb" /> </div>
-                            <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-03.png' %}" alt="Shape Thumb" /> </div>
-                            <div class="shape-image shape-image-3"> <img src="{% static 'images/shapes/shape-23-02.png' %}" alt="Shape Thumb" /> </div>
                         </div>
                     </div>
                 </div>
@@ -92,7 +64,6 @@
                 </div>
                 <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none"> </div>
             </div>
-            <div class="side-shape-image d-lg-block d-none"> <img src="{% static 'images/videopopup/video-infinite-rotate.png' %}" alt="Shape Images" /> </div>
         </div>
         <!-- End Video Area  -->
         <!---->
@@ -124,13 +95,6 @@
                             <div class="read-more-btn mt--75 mt_lg--30 mt_md--40 mt_sm--40 sal-animate" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800"> <a class="edu-btn" href="#LandingFrom">Book free trial<i class="icon-arrow-right-line-right"></i></a> <a class="info-btn" href="tel:+201007450312"><i class="icon-call"></i>+2010 0745 0312</a> </div>
                         </div>
                     </div>
-                </div>
-                <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
-                    <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-05-04.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-33.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-3"> <img src="{% static 'images/shapes/shape-13-05.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-4"> <img src="{% static 'images/shapes/shape-01-03.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-5"> <img src="{% static 'images/shapes/shape-06.png' %}" alt="Shape Thumb"> </div>
                 </div>
             </div>
         </div>
@@ -255,13 +219,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
-                    <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-05-04.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-33.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-3"> <img src="{% static 'images/shapes/shape-13-05.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-4"> <img src="{% static 'images/shapes/shape-01-03.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-5"> <img src="{% static 'images/shapes/shape-06.png' %}" alt="Shape Thumb"> </div>
-                </div>
             </div>
         </div>
         <!---->
@@ -282,11 +239,6 @@
                             <a href="https://www.youtube.com/watch?v=pNje3bWz7V8" class="video-play-btn with-animation position-to-top video-popup-activation color-secondary size-60"> <span class="play-icon"></span> </a>
                         </div>
                     </div>
-                </div>
-                <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
-                    <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-09-01.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-04-05.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-3"> <img src="{% static 'images/shapes/shape-13-02.png' %}" alt="Shape Thumb"> </div>
                 </div>
             </div>
         </div>
@@ -490,12 +442,6 @@
                     </div>
                     <!-- End Event Grid   -->
                 </div>
-                <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
-                    <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-03.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-15.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-3"> <img src="{% static 'images/shapes/shape-13-05.png' %}" alt="Shape Thumb"> </div>
-                    <div class="shape-image shape-image-4"> <img src="{% static 'images/shapes/shape-05-01.png' %}" alt="Shape Thumb"> </div>
-                </div>
             </div>
         </div>
         <!---->
@@ -567,10 +513,6 @@
                         </div>
                     </div>
                     <!-- End Tastimonial Card  -->
-                </div>
-                <div class="shape-dot-wrapper shape-wrapper d-xl-block d-none">
-                    <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-23.png' %}" alt="Shape Thumb" /> </div>
-                    <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-14-02.png' %}" alt="Shape Thumb" /> </div>
                 </div>
             </div>
         </div>

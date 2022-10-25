@@ -37,7 +37,7 @@
     {% block extra_head %}{% endblock %}
 </head>
 
-<body>
+<body class="container-fluid">
     <!--Contact Us fIXED-->
     <div>
         <a class="" href="tel:+201007450312"
@@ -58,20 +58,20 @@
                 <div class="row align-items-center ">
                     <div class="col">
                         <div class="logo">
-                            <a href="index.html"> <img class="logo-light" src="{% static 'images/logo/logo.png' %}"
+                            <a href="/"> <img class="logo-light" src="{% static 'images/logo/logo.png' %}"
                                     alt="Site Logo"> </a>
                         </div>
                     </div>
                     <div class="col-lg-9 d-none d-xl-block">
                         <nav class="mainmenu-nav d-none d-lg-block">
                             <ul class="mainmenu">
-                                <li><a href="#intro">Intro</a></li>
-                                <li><a href="#About">About Us</a></li>
-                                <li><a href="#Why">Why Us</a></li>
-                                <li><a href="#Pricing">Pricing</a></li>
-                                <li><a href="#Parents">Parents</a></li>
-                                <li><a href="#Features">Features</a></li>
-                                <li><a href="#Testimonials">Testimonials</a></li>
+                                <li><a href="/#intro">Intro</a></li>
+                                <li><a href="/#About">About Us</a></li>
+                                <li><a href="/#Why">Why Us</a></li>
+                                <li><a href="/#Pricing">Pricing</a></li>  
+                                <li><a href="/#Parents">Parents</a></li>
+                                <li><a href="/#Features">Features</a></li>
+                                <li><a href="/#Testimonials">Testimonials</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -80,7 +80,7 @@
                             <div class="header-menu-bar">
                                 <div class="quote-icon quote-user d-none d-md-block ml--15 ml_sm--5"> <a
                                         class="edu-btn btn-medium header-purchase-btn"
-                                        href="#LandingFrom">Registration</a> </div>
+                                        href="/#LandingFrom">Registration</a> </div>
                             </div>
                             <div class="mobile-menu-bar ml--15 ml_sm--5 d-block d-xl-none">
                                 <div class="hamberger" style=" display: inline-block; margin-left: 10px; "> <button
@@ -92,6 +92,27 @@
                 </div>
             </div>
         </header>
+        <div class="popup-mobile-menu">
+            <div class="inner">
+                <div class="header-top">
+                    <div class="logo">
+                        <a href="/"> <img src="{% static 'images/logo/logo.png' %}" alt="Site Logo"> </a>
+                    </div>
+                    <div class="close-menu">
+                        <button class="close-button"> <i class="ri-close-line"></i> </button>
+                    </div>
+                </div>
+                <ul class="mainmenu">
+                    <li><a href="#intro">Intro</a></li>
+                    <li><a href="#About">About Us</a></li>
+                    <li><a href="#Why">Why Us</a></li>
+                    <li><a href="#Pricing">Pricing</a></li>
+                    <li><a href="#Parents">Parents</a></li>
+                    <li><a href="#Features">Features</a></li>
+                    <li><a href="#Testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+        </div>
         {% block body %}{% endblock %}
         <footer class="eduvibe-footer-one edu-footer footer-style-default">
             <div class="footer-top">
@@ -100,7 +121,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-12 col-12 ">
                             <div class="edu-footer-widget">
                                 <div class="logo">
-                                    <a href="index.html"> <img class="logo-light" src="{% static 'images/logo/logo.png' %}"
+                                    <a href="/"> <img class="logo-light" src="{% static 'images/logo/logo.png' %}"
                                             alt="Site Logo"> </a>
                                 </div>
                                 <p class="description">Get In Touch</p>
@@ -119,12 +140,6 @@
                                     <li><a href="#"><i class="icon-Twitter"></i></a></li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="shape-dot-wrapper shape-wrapper d-md-block d-none">
-                        <div class="shape-image shape-image-1"> <img src="{% static 'images/shapes/shape-21-01.png' %}"
-                                alt="Shape Thumb"> </div>
-                        <div class="shape-image shape-image-2"> <img src="{% static 'images/shapes/shape-35.png' %}" alt="Shape Thumb">
                         </div>
                     </div>
                 </div>
