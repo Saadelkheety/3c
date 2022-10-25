@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailuserbar wagtailroutablepage_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailuserbar wagtailroutablepage_tags wagtailimages_tags static widget_tweaks %}
 {% block body %}
 {% wagtailuserbar 'bottom-left' %}
         <div class="popup-mobile-menu">
@@ -370,54 +370,50 @@
                 </div>
             </div>
         </div>
+       {% if form %}
         <div class=" bg-color-white mt-5 " id="LandingFrom" style="padding-top: 100px;">
             <div class="container">
                 <div class="row row--35 justify-content-center">
                     <div class="col-lg-9 ">
                         <div class="checkout-page-style">
-                            <h3 class="title">Start your journey now </h3>
-                            <form class="checkout-form" action="#">
+                            <h3 class="title">{{ page.form_title }}</h3>
+                            <p>{{ page.body|richtext }}</p>
+                            <form class="checkout-form" action="{% pageurl page %}" method="POST" id="checkout-form">
+                                {% csrf_token %}
+
+                                {% if form.non_field_errors %}
+                                <div class="row alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-box mb--20">
-                                            <input type="text" placeholder="First Name*">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-box mb--20">
-                                            <input type="text" placeholder="Last Name*">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-box mb--20">
-                                            <input type="text" placeholder="Parent Phone Number *">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-box mb--20">
-                                            <input type="email" placeholder="Email Address*">
-                                        </div>
-                                    </div>
-                                        <div class="payment-details mt--50">
-                                            <h3 class="title">Choose Age Range</h3>
-                                            <div class="col-lg-12 d-flex">
-                                                <div class="comment-form-consent input-box">
-                                                    <input id="radio-1" type="radio" name="flexRadioDefault"  style="display: none;"/>
-                                                    <label for="radio-1" style="font-size: 26px;text-align: center;font-weight: bold;">6-8 <br>Years</label>
-                                                </div>
-                                                <div class="comment-form-consent input-box">
-                                                    <input id="radio-2" type="radio" name="flexRadioDefault" style="display: none;"/>
-                                                    <label for="radio-2" style="font-size: 26px;text-align: center;font-weight: bold;">9-12 <br>Years</label>
-                                                </div>
-                                                <div class="comment-form-consent input-box">
-                                                    <input id="radio-3" type="radio" name="flexRadioDefault" style="display: none;"/>
-                                                    <label for="radio-3" style="font-size: 26px;text-align: center;font-weight: bold;">13-18 <br>Years</label>
-                                                </div>
+                                    {% for field in form.visible_fields %}
+                                    {% if field.field.choices %}
+                                    <div class="payment-details mt--50">
+                                        <h3 class="title">{{ field.label }}</h3>
+                                        <div class="col-lg-12 d-flex">
+                                            {% for radio in field %}
+                                            <div class="comment-form-consent input-box">
+                                                <input id="{{ radio.id_for_label }}" type="radio" name="{{ field.html_name }}" style="display: none;" value="{{radio.choice_label}}">
+                                                <label for="{{ radio.id_for_label }}" style="font-size: 26px;text-align: center;font-weight: bold;">{{radio.choice_label}}</label>
                                             </div>
+                                            {% endfor %}
                                         </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="col-lg-6">
+                                        <div class="input-box mb--20">
+                                            {% render_field field class+="form-control" placeholder=field.label%}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
                                     <div class="col-md-12">
                                         <div class="cart-summary-button-group">
-                                            <a class="edu-btn w-100 text-center" href="#">Book Your Schedule
+                                            <a class="edu-btn w-100 text-center" href="javascript:{}" onclick="document.getElementById('checkout-form').submit();">{{ page.submit_button }}
                                                 <i class="icon-arrow-right-line-right"></i></a>
                                         </div>
                                     </div>
@@ -428,6 +424,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="eduvibe-home-three-event edu-event-area bg-color-white edu-section-gap" id="Parents">
             <div class="container eduvibe-animated-shape">
                 <div class="row">
