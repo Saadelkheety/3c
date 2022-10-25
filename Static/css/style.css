@@ -24504,12 +24504,6 @@ Gallery Item
   cursor: pointer;
 }
 
-.eduvibe-landing-banner .banner-image {
-  margin-right: -260px;
-  margin-left: -92px;
-  margin-top: 77px;
-}
-
 @media only screen and (max-width: 1650px) {
   .eduvibe-landing-banner .banner-image {
     margin-right: -228px;
