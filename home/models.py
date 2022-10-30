@@ -7,6 +7,15 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, StreamFieldPanel, InlinePanel, MultiFieldPanel, FieldRowPanel
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
+from wagtail import blocks
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.fields import StreamField
+
+
+class LandingBanner(blocks.StructBlock):
+    title = blocks.RichTextBlock(help_text="Dispalay as a heading bold text", form_classname="h2" , default="Online Coding for kids Not Just A Course Its A Learning Journey")
+    description = blocks.RichTextBlock(help_text="Dispalay as a description text", default="Start your child's Online Coding Journey for only 999 EGP New Year's Offer!")
+    hero_image = ImageChooserBlock(help_text="A hero image")
 
 
 class FormField(AbstractFormField):
@@ -17,6 +26,10 @@ class FormField(AbstractFormField):
 class HomePage(AbstractEmailForm):
     template = 'index.html'
     body = RichTextField(blank=True)
+    body_divs = StreamField([
+    ('landing_banner', LandingBanner()),
+        ], use_json_field=True, blank=True)
+
     thank_you_text = RichTextField(blank=True)
     form_title = models.CharField(max_length=255, blank=True)
     submit_button = models.CharField(max_length=255, default='Submit') 
@@ -43,7 +56,7 @@ class HomePage(AbstractEmailForm):
 
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
-        FieldPanel('body', classname="full"),
+        FieldPanel('body_divs', classname="full"),
         FieldPanel('form_title', classname="title"),
         FieldPanel('submit_button', classname="submit_button"),
         InlinePanel('form_fields', label="Form fields"),
