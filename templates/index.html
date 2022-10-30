@@ -3,6 +3,8 @@
 {% block body %}
 {% wagtailuserbar 'bottom-left' %}
         <!-- Start Sldier Area  -->
+        {% for block in page.body_divs %}
+        {% if block.block_type == 'landing_banner' %}
         <div class="slider-area eduvibe-landing-banner bg-image" id="intro">
             <div class="d-flex align-items-center height-800">
                 <div class="container eduvibe-animated-shape">
@@ -10,10 +12,9 @@
                         <div class="col-lg-6">
                             <div class="inner">
                                 <div class="content text-start">
-                                    <h1 class="title" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
-                                        Online Coding for kids<br> Not Just A Course Its A Learning Journey</h1>
-                                    <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="800" class="hero-text">Start your child's Online Coding Journey for only
-                                        <br> <span style="font-weight: bold;color: #00aeef;">999 EGP</span> New Year's Offer!
+                                    <h1 class="title" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">{{ block.value.title }}</h1>
+                                    <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="800" class="hero-text">
+                                        {{ block.value.description }}
                                     </p>
                                     <div class="btn-group-vertical" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800"> 
                                         <a class="edu-btn left-button" href="#LandingFrom"> 
@@ -28,13 +29,22 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="banner-image" style="margin: auto;">
-                                <div class="banner-main-image"> <img width="img" class="landing-banner-hero-img" src="{% static 'images/bg3cs.png' %}" alt="Coding For Kids" /> </div>
+                                <div class="banner-main-image">
+                                    {% if block.value.hero_image %}
+                                    {% image block.value.hero_image max-480x480 as hero_image %}
+                                    <img width="img" class="landing-banner-hero-img" src="{{ hero_image.url }}" alt="Coding For Kids" />
+                                    {% else %}
+                                    <img width="img" class="landing-banner-hero-img" src="{% static 'images/bg3cs.png' %}" alt="Coding For Kids" /> 
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% endfor %}
         <!-- End Sldier Area  -->
         <!-- Start Video Area  -->
         <div class="eduvibe-home-four-video about-us edu-video-area edu-section-gap video-style-2" id="About">
@@ -322,7 +332,7 @@
                 </div>
             </div>
         </div>
-       {% if form %}
+       {% if form.visible_fields %}
         <div class=" bg-color-white mt-5 " id="LandingFrom" style="padding-top: 100px;">
             <div class="container">
                 <div class="row row--35 justify-content-center">
