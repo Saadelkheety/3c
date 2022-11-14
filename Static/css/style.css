@@ -25812,3 +25812,11 @@ label > span {
     flex-wrap: wrap;
   }
 }
+
+.errorlist{
+  margin: 0;
+}
+
+.alert{
+  width: max-content;
+}

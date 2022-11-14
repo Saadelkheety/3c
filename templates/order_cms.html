@@ -1,0 +1,116 @@
+
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailuserbar wagtailroutablepage_tags wagtailimages_tags static widget_tweaks crispy_forms_tags %}
+{% block body %}
+{% wagtailuserbar 'bottom-left' %}
+        <div class="edu-breadcrumb-area breadcrumb-style-1 ptb--60 ptb_md--40 ptb_sm--40 bg-image">
+            <div class="container eduvibe-animated-shape">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-inner text-start">
+                            <div class="page-title">
+                                <h3 class="title">{{ page.title }}</h3>
+                            </div>
+                            <nav class="edu-breadcrumb-nav">
+                                <ol class="edu-breadcrumb d-flex justify-content-start liststyle">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="separator"><i class="ri-arrow-drop-right-line"></i></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <!-- Start Video Area  -->
+        <!-- <div class="edu-workshop-area eduvibe-home-three-video workshop-style-1 edu-section-gap bg-image bg-color-primary" id="Student">
+            <div class="container eduvibe-animated-shape">
+                <div class="row gy-lg-0 gy-5 row--60 align-items-center">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <div class="workshop-inner">
+                            {{ page.intro|richtext }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2">
+                        <div class="thumbnail video-popup-wrapper"> <img class="radius-small img-fluid" src="assets/images/video-popup-bg-02.jpg" alt="About Image">
+                            <a href="https://www.youtube.com/watch?v=pNje3bWz7V8" class="video-play-btn with-animation position-to-top video-popup-activation color-secondary size-60"> <span class="play-icon"></span> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- End Video Area  -->
+        {% if form.visible_fields %}
+        <div class="edu-checkout-area edu-section-gap bg-color-white">
+            <div class="container">
+                <div class="row row--35">
+                    <div class="col-lg-12">
+                        <div class="checkout-page-style">
+                            <h3 class="title">{{ page.form_title }}</h3>
+                            <form class="checkout-form"  id="checkout-form"  action="{% pageurl page %}" method="POST">
+                                {% csrf_token %}
+
+                                {% if form.non_field_errors %}
+                                <div class="row alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+
+
+                                <div class="row">
+                                    {% for field in form.visible_fields %}
+                                    {% if field.field.choices %}
+
+                                    <div class="col-lg-12 checkout-page-style mb-5">
+                                        <h3 class="title">{{ field.label }}</h3>
+                                        
+                                        <div class="row">
+                                                {% for radio in field %}
+                                                <div class="comment-form-consent input-box mb-2 col ">
+                                                    <input id="{{ radio.id_for_label }}" type="radio" name="{{ field.html_name }}" style="display: none;"  value="{{radio.choice_label}}"/>
+                                                    <label for="{{ radio.id_for_label }}" style="width: 100%; font-size: 20px;text-align: center;font-weight: bold;">{{radio.choice_label}}</label>
+                                                </div>
+                                                {% endfor %}
+                                    
+                                        </div>
+                                        {% if field.errors %}
+                                        <div class="row alert alert-danger m-4" role="alert">{{ field.errors }}</div>
+                                        {% endif %}
+                                    </div>
+
+                                    {% else %}
+                                    <div class="col-lg-6">
+                                        <div class="input-box mb--20">
+                                            {% render_field field class+="form-control" placeholder=field.label%}
+                                            {% if field.errors %}
+                                            <div class="row alert alert-danger m-4" role="alert">{{ field.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                   
+
+                                    {% endif %}
+                                    {% endfor %}
+                                    <div class="col-md-12">
+                                        <div class="cart-summary-button-group">
+                                            <a class="edu-btn w-100 text-center" href="javascript:{}"
+                                                onclick="document.getElementById('checkout-form').submit();">{{ page.submit_button }}
+                                                <i class="icon-arrow-right-line-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!---->
+        <!---->
+{% endblock %}

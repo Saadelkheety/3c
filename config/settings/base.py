@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'search',
     'cms',
     'offers.apps.OffersConfig',
+    'store.apps.StoreConfig',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'dashboard',
     'wagtail.admin',
     'wagtail.core',
+    "crispy_forms",
+    "phonenumber_field",
 
     'widget_tweaks',
 
@@ -188,3 +191,4 @@ WAGTAIL_SITE_NAME = "config"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'https://3cschool.net'
 WAGTAILADMIN_BASE_URL = 'https://3cschool.net'
+PHONENUMBER_DEFAULT_REGION="EG"

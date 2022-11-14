@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailuserbar wagtailroutablepage_tags wagtailimages_tags static widget_tweaks crispy_forms_tags %}
+{% block body %}
+{% wagtailuserbar 'bottom-left' %}
+
+        <!---->
+        <div class="edu-breadcrumb-area breadcrumb-style-1 ptb--60 ptb_md--40 ptb_sm--40 bg-image">
+            <div class="container eduvibe-animated-shape">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-inner text-start">
+                            <div class="page-title">
+                                <h3 class="title">Registration</h3>
+                            </div>
+                            <nav class="edu-breadcrumb-nav">
+                                <ol class="edu-breadcrumb d-flex justify-content-start liststyle">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="separator"><i class="ri-arrow-drop-right-line"></i></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Registration </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <!-- Start Video Area  -->
+        <div class="edu-workshop-area eduvibe-home-three-video workshop-style-1 edu-section-gap bg-image bg-color-primary"
+            id="Student">
+            <div class="container eduvibe-animated-shape">
+                <div class="row gy-lg-0 gy-5 row--60 align-items-center">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <div class="workshop-inner">
+                            <div class="section-title text-white sal-animate" data-sal-delay="150" data-sal="slide-up"
+                                data-sal-duration="800"> <span class="pre-title">Student</span>
+                                <h3 class="title">Meet Our Student</h3>
+                            </div>
+                            <p class="description sal-animate" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet, consect adipi scing elit,
+                                sed do eiusmod tempor incididunt ut sed do eiusmod tempor incididunt ut labore et dolore aliqua.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2">
+                        <div class="thumbnail video-popup-wrapper"> <img class="radius-small img-fluid"
+                                src="{% static 'images/video-popup-bg-02.jpg' %}" alt="About Image">
+                            <a href="https://www.youtube.com/watch?v=pNje3bWz7V8"
+                                class="video-play-btn with-animation position-to-top video-popup-activation color-secondary size-60">
+                                <span class="play-icon"></span> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Video Area  -->
+        <div class="edu-checkout-area edu-section-gap bg-color-white">
+                        <div class="checkout-page-style container">
+                            <h3 class="title">Registration Deatils</h3>
+                            <form class="checkout-form" method="post">{% csrf_token %}
+                                <div class="row">
+                                <div class="col-lg-8">
+                                {% if form.non_field_errors %}
+                                <div class="row alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="input-box mb--20">
+                                            <input class="form-control" type="text" name="form.client_fname.html_name" placeholder="{{ form.client_fname.help_text }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="input-box mb--20">
+                                            <input class="form-control" type="text" name="{{ form.client_lname.html_name }}"
+                                                placeholder="{{ form.client_lname.help_text }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="input-box mb--20">
+                                                <input class="form-control" type="tel"  maxlength="14" required="" id="id_client_phone" name="{{ form.client_phone.html_name }}"
+                                                placeholder="{{ form.client_phone.help_text }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="input-box mb--20">
+                                            <input class="form-control" type="email" name="{{ form.client_email.html_name }}" maxlength="254" required="" id="id_client_email" placeholder="{{ form.client_email.help_text }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 checkout-page-style mb-5">
+                                        <h3 class="title">Choose Your Plan </h3>
+                                        <div class="row">
+                                            
+                                            <div class="col-lg-12 custom-input">
+                                                {% for product in products %}
+                                                <div class="comment-form-consent input-box mb-2 ">
+                                                    <input id="{{ product.id }}" type="radio" name="product" required="" value="{{ product.id }}"
+                                                        style="display: none;" />
+                                                    <label for="{{ product.id }}"
+                                                        style="font-size: 26px;text-align: center;font-weight: bold;">
+                                                        <div class="plan-pricing">
+                                                            <span>{{ product.name }}</span><br>
+                                                            <span class="amount">{{ product.get_final_price}}</span>
+                                                            <span class="duration">{{ product.description }}</span><br>
+                                                            <span
+                                                                style="text-decoration-line: line-through; font-size: 14px">{{product.price}}
+                                                                EGP</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                            
+        
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="checkout-page-style">
+                                        <div class="payment-details mt--50">
+                                            <h3 class="title">Payment Methods</h3>
+                                            <br>
+                                            <div class="row row--10">
+                                                <div class="col-lg-12 d-flex">
+                                                    <div class="comment-form-consent input-box mb-2 " style="margin: 10;">
+                                                        <input id="radio-30" type="radio" name="flexRadioDefault" style="display: none;" />
+                                                        <label for="radio-30"><img src="{% static 'images/visamaster.png' %}" width="100"
+                                                                style=" position: relative; top: -4px; "> </label>
+                                                    </div>
+                                                    <div class="comment-form-consent input-box mb-2 " style="margin-right: 10;">
+                                                        <input id="radio-20" type="radio" name="flexRadioDefault" style="display: none;" />
+                                                        <label for="radio-20"><img src="{% static 'images/Vodafone.jpg' %}" width="55"
+                                                                style=" position: relative;   "></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="edu-check-order mt--50">
+                                
+                                            <!-- <div class="col-lg-12">
+                                                <div class="coupon-code-btn"> <i class="icon-coupon-3-line"></i>
+                                                    <input type="text" placeholder="Coupon Code">
+                                                    <button class="edu-btn btn-dark">Apply Now</button>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="cart-summary-button-group"> <a class="edu-btn w-100 text-center" href="checkout.html">Pay Now<i
+                                                        class="icon-arrow-right-line-right"></i></a> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+        </div>
+        <!---->
+        <!---->
+
+{% endblock %}
